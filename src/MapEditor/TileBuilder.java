@@ -1,8 +1,8 @@
 package MapEditor;
 
 import Engine.GraphicsHandler;
-import Scene.Map;
-import Scene.MapTile;
+import Level.Map;
+import Level.MapTile;
 import Utils.Colors;
 
 import javax.swing.*;
@@ -95,17 +95,22 @@ public class TileBuilder extends JPanel {
         int selectedTileIndex = getSelectedTileIndex(selectedPoint);
         if (selectedTileIndex != -1) {
             MapTile oldMapTile = map.getMapTiles()[selectedTileIndex];
-            map.getMapTiles()[selectedTileIndex] = map.getTileset().getTile(controlPanelHolder.getSelectedTileIndex()).build(oldMapTile.getX(), oldMapTile.getY(), map);
+            MapTile newMapTile =  map.getTileset().getTile(controlPanelHolder.getSelectedTileIndex()).build(oldMapTile.getX(), oldMapTile.getY());
+            newMapTile.setMap(map);
+            map.getMapTiles()[selectedTileIndex] = newMapTile;
+
         }
         repaint();
     }
 
     public void tileHovered(Point hoveredPoint) {
         this.hoveredMapTile = getHoveredTile(hoveredPoint);
-        int hoveredIndexX = Math.round(this.hoveredMapTile.getX()) / map.getTileset().getScaledSpriteWidth();
-        int hoveredIndexY = Math.round(this.hoveredMapTile.getY()) / map.getTileset().getScaledSpriteHeight();
-        hoveredTileIndexLabel.setText("X: " + hoveredIndexX + ", Y: " + hoveredIndexY);
-        repaint();
+        if (this.hoveredMapTile != null) {
+            int hoveredIndexX = Math.round(this.hoveredMapTile.getX()) / map.getTileset().getScaledSpriteWidth();
+            int hoveredIndexY = Math.round(this.hoveredMapTile.getY()) / map.getTileset().getScaledSpriteHeight();
+            hoveredTileIndexLabel.setText("X: " + hoveredIndexX + ", Y: " + hoveredIndexY);
+            repaint();
+        }
     }
 
     protected MapTile getHoveredTile(Point mousePoint) {

@@ -1,10 +1,11 @@
 package Builders;
 
 import GameObject.Frame;
-import Scene.Map;
-import Scene.MapEntity;
-import Scene.MapEntityStatus;
+import Level.Map;
+import Level.MapEntity;
+import Level.MapEntityStatus;
 
+// Builder class to instantiate a MapEntity class
 public class MapEntityBuilder extends GameObjectBuilder {
     protected MapEntityStatus mapEntityStatus = MapEntityStatus.ACTIVE;
     protected boolean isRespawnable = true;
@@ -30,7 +31,7 @@ public class MapEntityBuilder extends GameObjectBuilder {
     }
 
     public MapEntity build(float x, float y, Map map) {
-        MapEntity mapEntity = new MapEntity(x, y, cloneAnimations(), startingAnimationName, map);
+        MapEntity mapEntity = new MapEntity(x, y, cloneAnimations(), startingAnimationName);
         mapEntity.setMapEntityStatus(mapEntityStatus);
         mapEntity.setIsRespawnable(isRespawnable);
         return mapEntity;

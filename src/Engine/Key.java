@@ -1,12 +1,13 @@
 package Engine;
 
+// Used by the Keyboard class to define a key to their key codes
 public enum Key {
     UP, 
     DOWN, 
     RIGHT, 
     LEFT, 
     ENTER,
-    LSHIFT,
+    SHIFT,
     A,
     B,
     C,
@@ -43,5 +44,6 @@ public enum Key {
     EIGHT,
     NINE,
     ZERO,
-    SPACE
+    SPACE,
+    ESC
 }

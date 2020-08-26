@@ -2,26 +2,27 @@ package EnhancedMapTiles;
 
 import Builders.FrameBuilder;
 import Engine.ImageLoader;
-import Engine.Keyboard;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
-import Scene.EnhancedMapTile;
-import Scene.Map;
-import Scene.Player;
-import Scene.TileType;
+import Level.EnhancedMapTile;
+import Level.Player;
+import Level.TileType;
 import Utils.Point;
+
 import java.util.HashMap;
 
+// This class is for the end level gold box tile
+// when the player touches it, it will tell the player that the level has been completed
 public class EndLevelBox extends EnhancedMapTile {
-    public EndLevelBox(Point location, Map map) {
-        super(location.x, location.y, new SpriteSheet(ImageLoader.load("GoldBox.png"), 16, 16), "DEFAULT", TileType.PASSABLE, map);
+    public EndLevelBox(Point location) {
+        super(location.x, location.y, new SpriteSheet(ImageLoader.load("GoldBox.png"), 16, 16), "DEFAULT", TileType.PASSABLE);
     }
 
     @Override
-    public void update(Keyboard keyboard, Player player) {
-        super.update(keyboard, player);
+    public void update(Player player) {
+        super.update(player);
         if (intersects(player)) {
-            //map.setIsCompleted(true);
+            player.completeLevel();
         }
     }
 

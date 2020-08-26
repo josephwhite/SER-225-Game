@@ -1,10 +1,10 @@
 package Builders;
 
 import GameObject.Frame;
-import Scene.Map;
-import Scene.MapTile;
-import Scene.TileType;
+import Level.MapTile;
+import Level.TileType;
 
+// Builder class to instantiate a MapTile class
 public class MapTileBuilder extends GameObjectBuilder {
 
     private TileType tileType = TileType.PASSABLE;
@@ -28,7 +28,7 @@ public class MapTileBuilder extends GameObjectBuilder {
         return this;
     }
 
-    public MapTile build(float x, float y, Map map) {
-        return new MapTile(x, y, cloneAnimations(), startingAnimationName, tileIndex, tileType, map);
+    public MapTile build(float x, float y) {
+        return new MapTile(x, y, cloneAnimations(), startingAnimationName, tileIndex, tileType);
     }
 }

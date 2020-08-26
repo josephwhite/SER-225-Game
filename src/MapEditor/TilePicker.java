@@ -1,10 +1,10 @@
 package MapEditor;
 
-import Engine.GraphicsHandler;
-import Scene.Map;
-import Scene.MapTile;
 import Builders.MapTileBuilder;
-import Scene.Tileset;
+import Engine.GraphicsHandler;
+import Level.Map;
+import Level.MapTile;
+import Level.Tileset;
 import Utils.Colors;
 
 import javax.swing.*;
@@ -71,7 +71,8 @@ public class TilePicker extends JPanel {
 
                 int x = j * tileset.getScaledSpriteWidth() + ((j * 5) + 5);
                 int y = i * tileset.getScaledSpriteHeight() + ((i * 5) + 5);
-                MapTile tile = mapTileBuilders.get(tileKeys[currentKeyIndex]).build(x, y, map);
+                MapTile tile = mapTileBuilders.get(tileKeys[currentKeyIndex]).build(x, y);
+                tile.setMap(map);
                 mapTiles.put(currentKeyIndex, tile);
                 currentKeyIndex++;
             }

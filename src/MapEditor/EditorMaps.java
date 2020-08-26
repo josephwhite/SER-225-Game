@@ -1,16 +1,27 @@
 package MapEditor;
 
+import Level.Map;
 import Maps.TestMap;
-import Maps.TestMap2;
-import Scene.Map;
+import Maps.TitleScreenMap;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class EditorMaps {
-    public static HashMap<String, Map> getMaps() {
-        return new HashMap<String, Map>() {{
-            put("TestMap", new TestMap());
-            put("TestMap2", new TestMap2());
+    public static ArrayList<String> getMapNames() {
+        return new ArrayList<String>() {{
+            add("TestMap");
+            add("TitleScreen");
         }};
+    }
+
+    public static Map getMapByName(String mapName) {
+        switch(mapName) {
+            case "TestMap":
+                return new TestMap();
+            case "TitleScreen":
+                return new TitleScreenMap();
+            default:
+                throw new RuntimeException("Unrecognized map name");
+        }
     }
 }

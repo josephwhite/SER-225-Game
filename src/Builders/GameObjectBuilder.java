@@ -2,11 +2,11 @@ package Builders;
 
 import GameObject.Frame;
 import GameObject.GameObject;
-import Scene.Map;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
+// Builder class to instantiate a GameObject class
 public class GameObjectBuilder {
     protected HashMap<String, Frame[]> animations = new HashMap<>();
     protected String startingAnimationName = "DEFAULT";
@@ -55,7 +55,7 @@ public class GameObjectBuilder {
         return animationsCopy;
     }
 
-    public GameObject build(float x, float y, Map map) {
-        return new GameObject(x, y, cloneAnimations(), startingAnimationName, map);
+    public GameObject build(float x, float y) {
+        return new GameObject(x, y, cloneAnimations(), startingAnimationName);
     }
 }
